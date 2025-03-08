@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Role Based Auth System</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-gray-800">Dashboard</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span id="userFullName" class="text-gray-700"></span>
+                    <span id="userRole" class="px-3 py-1 rounded-full text-sm font-medium"></span>
+                    <button 
+                        onclick="logout()"
+                        class="text-gray-700 hover:text-gray-900 focus:outline-none"
+                    >
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Welcome Section -->
+        <div class="px-4 py-6 sm:px-0">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Welcome to Your Dashboard</h2>
+                <p class="text-gray-600" id="welcomeMessage"></p>
+            </div>
+        </div>
+
+        <!-- Role-specific Content -->
+        <div class="mt-6 px-4 sm:px-0">
+            <!-- Admin Section (visible only to admins) -->
+            <div id="adminContent" class="hidden">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Admin Controls</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Admin Cards -->
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="flex items-center">
+                                <i class="fas fa-users text-blue-500 text-2xl"></i>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold">User Management</h4>
+                                    <p class="text-sm text-gray-600">Manage system users</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="flex items-center">
+                                <i class="fas fa-cog text-green-500 text-2xl"></i>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold">System Settings</h4>
+                                    <p class="text-sm text-gray-600">Configure system parameters</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <div class="flex items-center">
+                                <i class="fas fa-chart-bar text-purple-500 text-2xl"></i>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold">Analytics</h4>
+                                    <p class="text-sm text-gray-600">View system analytics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Section (visible to all users) -->
+            <div id="userContent" class="mt-6">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Quick Actions</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- User Cards -->
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <div class="flex items-center">
+                                <i class="fas fa-user-circle text-yellow-500 text-2xl"></i>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold">Profile</h4>
+                                    <p class="text-sm text-gray-600">View and edit your profile</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <div class="flex items-center">
+                                <i class="fas fa-bell text-red-500 text-2xl"></i>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold">Notifications</h4>
+                                    <p class="text-sm text-gray-600">View your notifications</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // This will be handled by auth.js
+        checkAuth();
+    </script>
+</body>
+</html>
